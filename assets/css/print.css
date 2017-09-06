@@ -1,0 +1,7 @@
+@page { size: A4 landscape } 
+
+@media screen {
+  body {
+    width: 190mm; /* needed for Chrome */
+  }
+}
