@@ -45,6 +45,7 @@ I was **rejected** my CFP: **"RejectKaigi"**, so I was talking about **RejectKai
 
 ## Opal
 
+* Ruby to JavaScript source code compiler
 * Web front end programming in Ruby is good!
 * [JavaScript is the Donald Trump of the IT Industry](https://medium.com/@richardeng/javascript-is-the-donald-trump-of-the-it-industry-376ffdda774)
     - Donald Trump is puerile, arrogant, ignorant, vindictive, delusional, and egotistical.
@@ -60,7 +61,7 @@ I was **rejected** my CFP: **"RejectKaigi"**, so I was talking about **RejectKai
 
 ## Isomorphic programming
 
-* node.js ?
+* node.js ?(Meteo, Server side rendering with React)
 * I don't want to write javascript.
 * We can write in Ruby both on the browser and the server-side!
 
@@ -74,18 +75,64 @@ I was **rejected** my CFP: **"RejectKaigi"**, so I was talking about **RejectKai
 
 ![large](RubyKaigi2017.png)
 
+## Requirements for dRuby on Browser
+
+* WebSocket protocol plugin for dRuby.
+* dRuby client on Browser(by Opal).
+
+## Requirements for dRuby on Browser
+
+* WebSocket protocol plugin for dRuby.
+    - **drb-websocket**
+* dRuby client on Browser(by Opal).
+    - **opal-drb**
+
 ## drb-websocket
 
-* dRuby protocol implementation with WebSocket
+* WebSocket protocol plugin for dRuby.
+* Using **faye-websocket**
+* Standalone mode or Rack middleware mode
 
-## dRuby protocol
+## Rack middleware mode
+
+```ruby
+app = Rack::Builder.app do
+  server = Server.new(host: 'localhost')
+  map '/' do
+    use DRb::WebSocket::RackApp
+    run server
+  end
+end
+```
+
+---
+
+![large](protocol.png)
 
 ## opal-drb
 
-## Asynchronous
+* dRuby client implementation in Opal
+* It can't run with current version Opal. Because there is marshaling problem.
+
+## Asynchronous problem
 
 * It is forced asynchronous process with JavaScript.
-* `DRbObject` returns `Promise`.
+* **DRbObject**(as remote proxy) returns **Promise**.
+* There was no choice but to break the interfaces.
+
+## Asynchronous problem
+
+```ruby
+remote.start.then do |session|
+  @session = session
+  session.manager.collection.then do |collection|
+    store = { fusens: collection }
+    update_state(store: store)
+  end
+end
+```
+
+#### Callback HELL!!!
 
 ---
 
@@ -99,7 +146,29 @@ I was **rejected** my CFP: **"RejectKaigi"**, so I was talking about **RejectKai
 
 ---
 
-%large: Demo or Die
+%large: Demo Application
+
+## Kanban
+
+* There are many tools that metaphor Kanban. However, it is far from the user experience of real Kanban.
+* I aim at near user experience with the real Kanban.
+
+![kanban](kanban.jpg)
+
+## Kanban-chan
+
+![kanban](kanbanchan.png)
+
+
+----
+
+![large](structure.png)
+
+## Future tasks
+
+* Security(Anybody can access remote objects)
+* Rails integration
+* Integration with Menilite
 
 ## Conclusion
 

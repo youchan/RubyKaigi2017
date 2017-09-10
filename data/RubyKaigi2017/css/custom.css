@@ -11,10 +11,6 @@
   top: 45%;
 }
 
-.background-filter {
-  background-color: rgba(255,240,230,0.5);
-}
-
 .page p.icon {
   margin: 0;
   position: relative;
@@ -24,6 +20,22 @@
 
 .page p.icon img {
   width: 3em;
+}
+
+.page p.kanban {
+  text-align: center;
+}
+
+.page p.kanban img {
+  width: 40%;
+}
+
+.page p.middle {
+  text-align: center;
+}
+
+.page p.middle img {
+  width: 60%;
 }
 
 .huge {
@@ -50,6 +62,10 @@
 
 .background {
   background-image: url('../images/seigaiha.png');
+}
+
+.background-filter {
+  background-color: rgba(255,240,230,0.5);
 }
 
 .slide {
