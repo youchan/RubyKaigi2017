@@ -188,6 +188,30 @@ end
 
 class Gibier::Page16 < Gibier::PageBase
 def header
+  h2(nil, "dRuby")
+end
+
+def content
+  [].tap do |children|
+      children << ul(nil,
+                    li(nil, "Distributed objects system in Ruby"),
+                    li(nil, "Standard attached library"),
+                    li(nil, "No need interface description such as IDL")
+      )
+  end
+end
+end
+
+class Gibier::Page17 < Gibier::PageBase
+def content
+  [].tap do |children|
+      children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/seki.png"}, "")))
+  end
+end
+end
+
+class Gibier::Page18 < Gibier::PageBase
+def header
   h2(nil, "Requirements for dRuby on Browser")
 end
 
@@ -201,7 +225,7 @@ def content
 end
 end
 
-class Gibier::Page17 < Gibier::PageBase
+class Gibier::Page19 < Gibier::PageBase
 def header
   h2(nil, "Requirements for dRuby on Browser")
 end
@@ -222,7 +246,7 @@ def content
 end
 end
 
-class Gibier::Page18 < Gibier::PageBase
+class Gibier::Page20 < Gibier::PageBase
 def header
   h2(nil, "drb-websocket")
 end
@@ -238,7 +262,7 @@ def content
 end
 end
 
-class Gibier::Page19 < Gibier::PageBase
+class Gibier::Page21 < Gibier::PageBase
 def header
   h2(nil, "Rack middleware mode")
 end
@@ -265,7 +289,7 @@ def content
 end
 end
 
-class Gibier::Page20 < Gibier::PageBase
+class Gibier::Page22 < Gibier::PageBase
 def content
   [].tap do |children|
       children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/protocol.png"}, "")))
@@ -273,7 +297,7 @@ def content
 end
 end
 
-class Gibier::Page21 < Gibier::PageBase
+class Gibier::Page23 < Gibier::PageBase
 def header
   h2(nil, "opal-drb")
 end
@@ -288,7 +312,19 @@ def content
 end
 end
 
-class Gibier::Page22 < Gibier::PageBase
+class Gibier::Page24 < Gibier::PageBase
+def header
+  h2(nil, "Callbacks")
+end
+
+def content
+  [].tap do |children|
+      children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/callbacks.png"}, "")))
+  end
+end
+end
+
+class Gibier::Page25 < Gibier::PageBase
 def header
   h2(nil, "Asynchronous problem")
 end
@@ -304,7 +340,7 @@ def content
 end
 end
 
-class Gibier::Page23 < Gibier::PageBase
+class Gibier::Page26 < Gibier::PageBase
 def header
   h2(nil, "Asynchronous problem")
 end
@@ -332,7 +368,7 @@ def content
 end
 end
 
-class Gibier::Page24 < Gibier::PageBase
+class Gibier::Page27 < Gibier::PageBase
 def content
   [].tap do |children|
       children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/fuck.png"}, "")))
@@ -340,7 +376,7 @@ def content
 end
 end
 
-class Gibier::Page25 < Gibier::PageBase
+class Gibier::Page28 < Gibier::PageBase
 def header
   h2(nil, "Advantage of dRuby on Browser")
 end
@@ -356,7 +392,7 @@ def content
 end
 end
 
-class Gibier::Page26 < Gibier::PageBase
+class Gibier::Page29 < Gibier::PageBase
 def content
   [].tap do |children|
       children << p({className:"large"}, "Demo Application")
@@ -364,7 +400,7 @@ def content
 end
 end
 
-class Gibier::Page27 < Gibier::PageBase
+class Gibier::Page30 < Gibier::PageBase
 def header
   h2(nil, "Kanban")
 end
@@ -380,7 +416,7 @@ def content
 end
 end
 
-class Gibier::Page28 < Gibier::PageBase
+class Gibier::Page31 < Gibier::PageBase
 def header
   h2(nil, "Kanban-chan")
 end
@@ -392,7 +428,7 @@ def content
 end
 end
 
-class Gibier::Page29 < Gibier::PageBase
+class Gibier::Page32 < Gibier::PageBase
 def content
   [].tap do |children|
       children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/structure.png"}, "")))
@@ -400,7 +436,7 @@ def content
 end
 end
 
-class Gibier::Page30 < Gibier::PageBase
+class Gibier::Page33 < Gibier::PageBase
 def header
   h2(nil, "Future tasks")
 end
@@ -416,7 +452,7 @@ def content
 end
 end
 
-class Gibier::Page31 < Gibier::PageBase
+class Gibier::Page34 < Gibier::PageBase
 def header
   h2(nil, "Conclusion")
 end
@@ -432,5 +468,5 @@ def content
 end
 end
 
-Gibier.page_count = 32
+Gibier.page_count = 35
 Gibier.title = "dRuby on Browser"

@@ -72,6 +72,26 @@
   color: #5e5e5e;
 }
 
+a:link {
+  color: #5e5e5e;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #5e5e5e;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #5e5e5e;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #5e5e5e;
+  text-decoration: none;
+}
+
 .track-field {
   bottom: 40px;
   height: 24px;

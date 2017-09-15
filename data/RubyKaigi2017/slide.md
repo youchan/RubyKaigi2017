@@ -75,6 +75,16 @@ I was **rejected** my CFP: **"RejectKaigi"**, so I was talking about **RejectKai
 
 ![large](RubyKaigi2017.png)
 
+## dRuby
+
+- Distributed objects system in Ruby
+- Standard attached library
+- No need interface description such as IDL
+
+---
+
+![large](seki.png)
+
 ## Requirements for dRuby on Browser
 
 * WebSocket protocol plugin for dRuby.
@@ -113,6 +123,10 @@ end
 
 * dRuby client implementation in Opal
 * It can't run with current version Opal. Because there is marshaling problem.
+
+## Callbacks
+
+![large](callbacks.png)
 
 ## Asynchronous problem
 
