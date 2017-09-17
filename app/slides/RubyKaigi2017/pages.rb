@@ -167,7 +167,7 @@ def content
   [].tap do |children|
       children << ul(nil,
                     li(nil, "Shares the code for models on the browser and the server-side."),
-                    li(nil, "Object marshalling"),
+                    li(nil, "Transparency access by object marshalling"),
                     li(nil, "Integration with ActiveRecord")
       )
   end
@@ -314,6 +314,46 @@ end
 
 class Gibier::Page24 < Gibier::PageBase
 def header
+  h2(nil, "opal-drb")
+end
+
+def content
+  [].tap do |children|
+      children << ul(nil,
+                    li(nil, "dRuby client ",strong(nil, "and server")," implementation in Opal"),
+                    li(nil, "It can't run with current version Opal. Because there is marshaling problem.")
+      )
+  end
+end
+end
+
+class Gibier::Page25 < Gibier::PageBase
+def header
+  h2(nil, "Callbacks")
+end
+
+def content
+  [].tap do |children|
+      children << code({ dangerouslySetInnerHTML: { __html: %q{<div class="highlight"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="n">remote</span> <span class="o">=</span> <span class="no">DRbObject</span><span class="p">.</span><span class="nf">new_with_uri</span> <span class="s1">'ws://127.0.0.1:1234'</span>
+<span class="no">DRbObject</span><span class="p">.</span><span class="nf">start_service</span> <span class="c1"># Run as server</span>
+
+<span class="n">remote</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+  <span class="n">x</span><span class="p">.</span><span class="nf">do_something</span> <span class="c1"># This is running on client</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table>
+</div>
+} } })
+  end
+end
+end
+
+class Gibier::Page26 < Gibier::PageBase
+def header
   h2(nil, "Callbacks")
 end
 
@@ -324,7 +364,18 @@ def content
 end
 end
 
-class Gibier::Page25 < Gibier::PageBase
+class Gibier::Page27 < Gibier::PageBase
+def header
+  h3(nil, "Browser (JavaScript) specific issues")
+end
+
+def content
+  [].tap do |children|
+  end
+end
+end
+
+class Gibier::Page28 < Gibier::PageBase
 def header
   h2(nil, "Asynchronous problem")
 end
@@ -340,7 +391,7 @@ def content
 end
 end
 
-class Gibier::Page26 < Gibier::PageBase
+class Gibier::Page29 < Gibier::PageBase
 def header
   h2(nil, "Asynchronous problem")
 end
@@ -368,7 +419,7 @@ def content
 end
 end
 
-class Gibier::Page27 < Gibier::PageBase
+class Gibier::Page30 < Gibier::PageBase
 def content
   [].tap do |children|
       children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/fuck.png"}, "")))
@@ -376,7 +427,7 @@ def content
 end
 end
 
-class Gibier::Page28 < Gibier::PageBase
+class Gibier::Page31 < Gibier::PageBase
 def header
   h2(nil, "Advantage of dRuby on Browser")
 end
@@ -385,14 +436,14 @@ def content
   [].tap do |children|
       children << ul(nil,
                     li(nil, "dRuby provides transparent access to the server-side objects."),
-                    li(nil, "The server-side objects are possible to share between different browsers."),
+                    li(nil, "The server-side objects are possible to share between different browsers. (It can be applied to collaborative applications)"),
                     li(nil, "No needs to declare any interfaces.")
       )
   end
 end
 end
 
-class Gibier::Page29 < Gibier::PageBase
+class Gibier::Page32 < Gibier::PageBase
 def content
   [].tap do |children|
       children << p({className:"large"}, "Demo Application")
@@ -400,7 +451,7 @@ def content
 end
 end
 
-class Gibier::Page30 < Gibier::PageBase
+class Gibier::Page33 < Gibier::PageBase
 def header
   h2(nil, "Kanban")
 end
@@ -416,7 +467,7 @@ def content
 end
 end
 
-class Gibier::Page31 < Gibier::PageBase
+class Gibier::Page34 < Gibier::PageBase
 def header
   h2(nil, "Kanban-chan")
 end
@@ -428,7 +479,7 @@ def content
 end
 end
 
-class Gibier::Page32 < Gibier::PageBase
+class Gibier::Page35 < Gibier::PageBase
 def content
   [].tap do |children|
       children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/structure.png"}, "")))
@@ -436,7 +487,7 @@ def content
 end
 end
 
-class Gibier::Page33 < Gibier::PageBase
+class Gibier::Page36 < Gibier::PageBase
 def header
   h2(nil, "Future tasks")
 end
@@ -444,15 +495,15 @@ end
 def content
   [].tap do |children|
       children << ul(nil,
-                    li(nil, "Security(Anybody can access remote objects)"),
-                    li(nil, "Rails integration"),
-                    li(nil, "Integration with Menilite")
+                    li(nil, "Security (Anybody can access remote objects)"),
+                    li(nil, "Complete Kanban-chan as a practical application."),
+                    li(nil, "Integration with Menilite (Supporting WebSocket is the missing-link)")
       )
   end
 end
 end
 
-class Gibier::Page34 < Gibier::PageBase
+class Gibier::Page37 < Gibier::PageBase
 def header
   h2(nil, "Conclusion")
 end
@@ -461,12 +512,12 @@ def content
   [].tap do |children|
       children << ul(nil,
                     li(nil, "I introduced the gems drb-websocket and opal-drb for realize dRuby on Browser."),
-                    li(nil, "It has advantages for cooperative web application."),
+                    li(nil, "It is suitable for collaborative web application (such as Google Apps)."),
                     li(nil, "I demonstarated Kanban application as example for the cooperative web application.")
       )
   end
 end
 end
 
-Gibier.page_count = 35
+Gibier.page_count = 38
 Gibier.title = "dRuby on Browser"

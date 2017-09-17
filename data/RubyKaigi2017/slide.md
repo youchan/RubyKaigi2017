@@ -68,7 +68,7 @@ I was **rejected** my CFP: **"RejectKaigi"**, so I was talking about **RejectKai
 ## Menilite
 
 * Shares the code for models on the browser and the server-side.
-* Object marshalling
+* Transparency access by object marshalling
 * Integration with ActiveRecord
 
 ## "dRuby on Browser"
@@ -124,9 +124,27 @@ end
 * dRuby client implementation in Opal
 * It can't run with current version Opal. Because there is marshaling problem.
 
+## opal-drb
+
+* dRuby client **and server** implementation in Opal
+* It can't run with current version Opal. Because there is marshaling problem.
+
+## Callbacks
+
+```ruby
+remote = DRbObject.new_with_uri 'ws://127.0.0.1:1234'
+DRbObject.start_service # Run as server
+
+remote.each do |x|
+  x.do_something # This is running on client
+end
+```
+
 ## Callbacks
 
 ![large](callbacks.png)
+
+### Browser (JavaScript) specific issues
 
 ## Asynchronous problem
 
@@ -155,7 +173,7 @@ end
 ## Advantage of dRuby on Browser
 
 * dRuby provides transparent access to the server-side objects.
-* The server-side objects are possible to share between different browsers.
+* The server-side objects are possible to share between different browsers. (It can be applied to collaborative applications)
 * No needs to declare any interfaces.
 
 ---
@@ -180,13 +198,13 @@ end
 
 ## Future tasks
 
-* Security(Anybody can access remote objects)
-* Rails integration
-* Integration with Menilite
+* Security (Anybody can access remote objects)
+* Complete Kanban-chan as a practical application.
+* Integration with Menilite (Supporting WebSocket is the missing-link)
 
 ## Conclusion
 
 * I introduced the gems drb-websocket and opal-drb for realize dRuby on Browser.
-* It has advantages for cooperative web application.
+* It is suitable for collaborative web application (such as Google Apps).
 * I demonstarated Kanban application as example for the cooperative web application.
 
