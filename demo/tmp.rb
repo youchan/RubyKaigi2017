@@ -25,9 +25,9 @@
  ******        ******      ******   ******     ******  ******              ******          ******         *******     ******   *****      ******         *****   *****      ******              
                                                                            *****                                                                                ******                          
                                                                            ***";                                                                                "RubyK                          
-                                                                          aigis                                                                      20       17\sSep                           
-                                                                      .18th-20t                                                                      h\sInternationa                            
-                                                                     l\sConfer                                                                       ence\sCentersH                             
-                                                                     iroshima                                                                        ,\sHiroshima,                              
-                                                                     \sJapa                                                                           n";)*""                                 
+                                                                          aigi                                                                       s2       017\sSe                           
+                                                                      p.18th-20                                                                      th\sInternation                            
+                                                                     al\sConfe                                                                       rence\sCenter                              
+                                                                     sHiroshi                                                                        ma,\sHiroshim                              
+                                                                     a,\sJa                                                                           pan";)*""                                 
                                                                                                                                                                                                 

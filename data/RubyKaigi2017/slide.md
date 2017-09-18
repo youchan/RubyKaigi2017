@@ -4,9 +4,13 @@
 
 %icon: ![](youchan.jpg)
 
+## Sponsor
+
+![ubiregi](ubiregi.png)
+
 ---
 
-%huge: RejectKaigi
+![large](rejectkaigi.png)
 
 ---
 
@@ -19,6 +23,8 @@ I was **rejected** my CFP: **"RejectKaigi"**, so I was talking about **RejectKai
 ---
 
 %large: This is **Self-mention**
+
+%large: 自己言及
 
 ---
 
@@ -38,6 +44,12 @@ I was **rejected** my CFP: **"RejectKaigi"**, so I was talking about **RejectKai
 * Ubiregi inc.
 * http://github.com/youchan/hyalite
 * http://github.com/youchan/menilite
+
+## Book
+
+![book](obnou.jpg)
+
+#### ジュンク堂ブースにてサイン会します
 
 ## "Writing web application in Ruby"
 
@@ -68,7 +80,8 @@ I was **rejected** my CFP: **"RejectKaigi"**, so I was talking about **RejectKai
 ## Menilite
 
 * Shares the code for models on the browser and the server-side.
-* Transparency access by object marshalling
+* Transparency access by object marshalling.
+* No need to write your API code.
 * Integration with ActiveRecord
 
 ## "dRuby on Browser"

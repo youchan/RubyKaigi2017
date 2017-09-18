@@ -12,9 +12,13 @@ end
 end
 
 class Gibier::Page1 < Gibier::PageBase
+def header
+  h2(nil, "Sponsor")
+end
+
 def content
   [].tap do |children|
-      children << p({className:"huge"}, "RejectKaigi")
+      children << p(nil, p({class:"ubiregi"}, img({src:"#{Gibier.assets_path}/images/ubiregi.png"}, "")))
   end
 end
 end
@@ -22,7 +26,7 @@ end
 class Gibier::Page2 < Gibier::PageBase
 def content
   [].tap do |children|
-      children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/rejectkaigi.jpg"}, "")))
+      children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/rejectkaigi.png"}, "")))
   end
 end
 end
@@ -30,7 +34,7 @@ end
 class Gibier::Page3 < Gibier::PageBase
 def content
   [].tap do |children|
-      children << p(nil, "I was ",strong(nil, "rejected")," my CFP: ",strong(nil, "\"RejectKaigi\""),", so I was talking about ",strong(nil, "RejectKaigi")," on ",strong(nil, "RejectKaigi"))
+      children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/rejectkaigi.jpg"}, "")))
   end
 end
 end
@@ -38,7 +42,7 @@ end
 class Gibier::Page4 < Gibier::PageBase
 def content
   [].tap do |children|
-      children << p({className:"large"}, "This is ",strong(nil, "Self-mention"))
+      children << p(nil, "I was ",strong(nil, "rejected")," my CFP: ",strong(nil, "\"RejectKaigi\""),", so I was talking about ",strong(nil, "RejectKaigi")," on ",strong(nil, "RejectKaigi"))
   end
 end
 end
@@ -46,7 +50,8 @@ end
 class Gibier::Page5 < Gibier::PageBase
 def content
   [].tap do |children|
-      children << p({className:"huge"}, "Quine")
+      children << p({className:"large"}, "This is ",strong(nil, "Self-mention"))
+      children << p({className:"large"}, "自己言及")
   end
 end
 end
@@ -54,7 +59,7 @@ end
 class Gibier::Page6 < Gibier::PageBase
 def content
   [].tap do |children|
-      children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/quine.jpg"}, "")))
+      children << p({className:"huge"}, "Quine")
   end
 end
 end
@@ -62,12 +67,20 @@ end
 class Gibier::Page7 < Gibier::PageBase
 def content
   [].tap do |children|
-      children << p({className:"large"}, strong(nil, "dRuby on Browser"))
+      children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/quine.jpg"}, "")))
   end
 end
 end
 
 class Gibier::Page8 < Gibier::PageBase
+def content
+  [].tap do |children|
+      children << p({className:"large"}, strong(nil, "dRuby on Browser"))
+  end
+end
+end
+
+class Gibier::Page9 < Gibier::PageBase
 def header
   h2(nil, "Who am I?")
 end
@@ -84,7 +97,20 @@ def content
 end
 end
 
-class Gibier::Page9 < Gibier::PageBase
+class Gibier::Page10 < Gibier::PageBase
+def header
+  h2(nil, "Book")
+end
+
+def content
+  [].tap do |children|
+      children << p(nil, p({class:"book"}, img({src:"#{Gibier.assets_path}/images/obnou.jpg"}, "")))
+      children << h4(nil, "ジュンク堂ブースにてサイン会します")
+  end
+end
+end
+
+class Gibier::Page11 < Gibier::PageBase
 def header
   h2(nil, "\"Writing web application in Ruby\"")
 end
@@ -96,7 +122,7 @@ def content
 end
 end
 
-class Gibier::Page10 < Gibier::PageBase
+class Gibier::Page12 < Gibier::PageBase
 def header
   h2(nil, "Opal")
 end
@@ -116,7 +142,7 @@ def content
 end
 end
 
-class Gibier::Page11 < Gibier::PageBase
+class Gibier::Page13 < Gibier::PageBase
 def header
   h2(nil, "Hyalite")
 end
@@ -130,7 +156,7 @@ def content
 end
 end
 
-class Gibier::Page12 < Gibier::PageBase
+class Gibier::Page14 < Gibier::PageBase
 def header
   h2(nil, "\"Isomorphic web programming in Ruby\"")
 end
@@ -142,7 +168,7 @@ def content
 end
 end
 
-class Gibier::Page13 < Gibier::PageBase
+class Gibier::Page15 < Gibier::PageBase
 def header
   h2(nil, "Isomorphic programming")
 end
@@ -158,7 +184,7 @@ def content
 end
 end
 
-class Gibier::Page14 < Gibier::PageBase
+class Gibier::Page16 < Gibier::PageBase
 def header
   h2(nil, "Menilite")
 end
@@ -167,14 +193,15 @@ def content
   [].tap do |children|
       children << ul(nil,
                     li(nil, "Shares the code for models on the browser and the server-side."),
-                    li(nil, "Transparency access by object marshalling"),
+                    li(nil, "Transparency access by object marshalling."),
+                    li(nil, "No need to write your API code."),
                     li(nil, "Integration with ActiveRecord")
       )
   end
 end
 end
 
-class Gibier::Page15 < Gibier::PageBase
+class Gibier::Page17 < Gibier::PageBase
 def header
   h2(nil, "\"dRuby on Browser\"")
 end
@@ -186,7 +213,7 @@ def content
 end
 end
 
-class Gibier::Page16 < Gibier::PageBase
+class Gibier::Page18 < Gibier::PageBase
 def header
   h2(nil, "dRuby")
 end
@@ -202,7 +229,7 @@ def content
 end
 end
 
-class Gibier::Page17 < Gibier::PageBase
+class Gibier::Page19 < Gibier::PageBase
 def content
   [].tap do |children|
       children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/seki.png"}, "")))
@@ -210,7 +237,7 @@ def content
 end
 end
 
-class Gibier::Page18 < Gibier::PageBase
+class Gibier::Page20 < Gibier::PageBase
 def header
   h2(nil, "Requirements for dRuby on Browser")
 end
@@ -225,7 +252,7 @@ def content
 end
 end
 
-class Gibier::Page19 < Gibier::PageBase
+class Gibier::Page21 < Gibier::PageBase
 def header
   h2(nil, "Requirements for dRuby on Browser")
 end
@@ -246,7 +273,7 @@ def content
 end
 end
 
-class Gibier::Page20 < Gibier::PageBase
+class Gibier::Page22 < Gibier::PageBase
 def header
   h2(nil, "drb-websocket")
 end
@@ -262,7 +289,7 @@ def content
 end
 end
 
-class Gibier::Page21 < Gibier::PageBase
+class Gibier::Page23 < Gibier::PageBase
 def header
   h2(nil, "Rack middleware mode")
 end
@@ -289,7 +316,7 @@ def content
 end
 end
 
-class Gibier::Page22 < Gibier::PageBase
+class Gibier::Page24 < Gibier::PageBase
 def content
   [].tap do |children|
       children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/protocol.png"}, "")))
@@ -297,7 +324,7 @@ def content
 end
 end
 
-class Gibier::Page23 < Gibier::PageBase
+class Gibier::Page25 < Gibier::PageBase
 def header
   h2(nil, "opal-drb")
 end
@@ -312,7 +339,7 @@ def content
 end
 end
 
-class Gibier::Page24 < Gibier::PageBase
+class Gibier::Page26 < Gibier::PageBase
 def header
   h2(nil, "opal-drb")
 end
@@ -327,7 +354,7 @@ def content
 end
 end
 
-class Gibier::Page25 < Gibier::PageBase
+class Gibier::Page27 < Gibier::PageBase
 def header
   h2(nil, "Callbacks")
 end
@@ -352,7 +379,7 @@ def content
 end
 end
 
-class Gibier::Page26 < Gibier::PageBase
+class Gibier::Page28 < Gibier::PageBase
 def header
   h2(nil, "Callbacks")
 end
@@ -364,7 +391,7 @@ def content
 end
 end
 
-class Gibier::Page27 < Gibier::PageBase
+class Gibier::Page29 < Gibier::PageBase
 def header
   h3(nil, "Browser (JavaScript) specific issues")
 end
@@ -375,7 +402,7 @@ def content
 end
 end
 
-class Gibier::Page28 < Gibier::PageBase
+class Gibier::Page30 < Gibier::PageBase
 def header
   h2(nil, "Asynchronous problem")
 end
@@ -391,7 +418,7 @@ def content
 end
 end
 
-class Gibier::Page29 < Gibier::PageBase
+class Gibier::Page31 < Gibier::PageBase
 def header
   h2(nil, "Asynchronous problem")
 end
@@ -419,7 +446,7 @@ def content
 end
 end
 
-class Gibier::Page30 < Gibier::PageBase
+class Gibier::Page32 < Gibier::PageBase
 def content
   [].tap do |children|
       children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/fuck.png"}, "")))
@@ -427,7 +454,7 @@ def content
 end
 end
 
-class Gibier::Page31 < Gibier::PageBase
+class Gibier::Page33 < Gibier::PageBase
 def header
   h2(nil, "Advantage of dRuby on Browser")
 end
@@ -443,7 +470,7 @@ def content
 end
 end
 
-class Gibier::Page32 < Gibier::PageBase
+class Gibier::Page34 < Gibier::PageBase
 def content
   [].tap do |children|
       children << p({className:"large"}, "Demo Application")
@@ -451,7 +478,7 @@ def content
 end
 end
 
-class Gibier::Page33 < Gibier::PageBase
+class Gibier::Page35 < Gibier::PageBase
 def header
   h2(nil, "Kanban")
 end
@@ -467,7 +494,7 @@ def content
 end
 end
 
-class Gibier::Page34 < Gibier::PageBase
+class Gibier::Page36 < Gibier::PageBase
 def header
   h2(nil, "Kanban-chan")
 end
@@ -479,7 +506,7 @@ def content
 end
 end
 
-class Gibier::Page35 < Gibier::PageBase
+class Gibier::Page37 < Gibier::PageBase
 def content
   [].tap do |children|
       children << p(nil, p({class:"large"}, img({src:"#{Gibier.assets_path}/images/structure.png"}, "")))
@@ -487,7 +514,7 @@ def content
 end
 end
 
-class Gibier::Page36 < Gibier::PageBase
+class Gibier::Page38 < Gibier::PageBase
 def header
   h2(nil, "Future tasks")
 end
@@ -503,7 +530,7 @@ def content
 end
 end
 
-class Gibier::Page37 < Gibier::PageBase
+class Gibier::Page39 < Gibier::PageBase
 def header
   h2(nil, "Conclusion")
 end
@@ -519,5 +546,5 @@ def content
 end
 end
 
-Gibier.page_count = 38
+Gibier.page_count = 40
 Gibier.title = "dRuby on Browser"

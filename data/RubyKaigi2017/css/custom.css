@@ -22,7 +22,23 @@
   width: 3em;
 }
 
+.page p.ubiregi {
+  text-align: center;
+}
+
+.page p.ubiregi img {
+  width: 60%;
+}
+
 .page p.kanban {
+  text-align: center;
+}
+
+.page p.book img {
+  width: 30%;
+}
+
+.page p.book {
   text-align: center;
 }
 
