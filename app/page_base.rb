@@ -24,7 +24,7 @@ module Gibier
     end
 
     def render
-      section({className: "page #{page_class_name}", style: style}, header, content)
+      section({class: "page #{page_class_name}", style: style}, header, content)
     end
   end
 end
