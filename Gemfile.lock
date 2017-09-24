@@ -16,7 +16,7 @@ GIT
 PATH
   remote: ../gibier
   specs:
-    gibier (0.8.7)
+    gibier (0.8.8)
       eventmachine
       fssm
       haml
@@ -35,8 +35,8 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.5.1)
-      public_suffix (~> 2.0, >= 2.0.2)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     backports (3.8.0)
     concurrent-ruby (1.0.5)
     daemons (1.2.4)
@@ -52,7 +52,7 @@ GEM
     hike (1.2.3)
     hyalite (0.1.0)
       opal
-    multi_json (1.12.1)
+    multi_json (1.12.2)
     opal (0.10.5)
       hike (~> 1.2)
       sourcemap (~> 0.1.0)
@@ -62,7 +62,7 @@ GEM
       opal
       paggio
     paggio (0.2.6)
-    public_suffix (2.0.5)
+    public_suffix (3.0.0)
     rack (1.6.8)
     rack-protection (1.5.3)
       rack
