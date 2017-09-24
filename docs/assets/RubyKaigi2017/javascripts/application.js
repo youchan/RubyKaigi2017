@@ -37007,24 +37007,24 @@ Opal.modules["slide"] = function(Opal) {
   function $rb_divide(lhs, rhs) {
     return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs / rhs : lhs['$/'](rhs);
   }
-  function $rb_lt(lhs, rhs) {
-    return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs < rhs : lhs['$<'](rhs);
-  }
-  function $rb_plus(lhs, rhs) {
-    return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs + rhs : lhs['$+'](rhs);
-  }
   function $rb_gt(lhs, rhs) {
     return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs > rhs : lhs['$>'](rhs);
   }
   function $rb_minus(lhs, rhs) {
     return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs - rhs : lhs['$-'](rhs);
   }
+  function $rb_lt(lhs, rhs) {
+    return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs < rhs : lhs['$<'](rhs);
+  }
+  function $rb_plus(lhs, rhs) {
+    return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs + rhs : lhs['$+'](rhs);
+  }
   function $rb_times(lhs, rhs) {
     return (typeof(lhs) === 'number' && typeof(rhs) === 'number') ? lhs * rhs : lhs['$*'](rhs);
   }
   var self = Opal.top, $scope = Opal, nil = Opal.nil, $breaker = Opal.breaker, $slice = Opal.slice, $module = Opal.module, $klass = Opal.klass, $hash2 = Opal.hash2, $gvars = Opal.gvars;
 
-  Opal.add_stubs(['$require', '$include', '$[]', '$===', '$map', '$el', '$const_get', '$==', '$times', '$page_count', '$/', '$to_i', '$sub', '$uri', '$location', '$on', '$handle_key_down', '$gh_pages', '$split', '$data', '$new', '$route', '$page_to', '$num', '$set_state', '$assign', '$to_s', '$code', '$<', '$+', '$>', '$-', '$now', '$!', '$fullscreen', '$puts', '$*', '$height', '$view', '$width', '$to_f', '$div', '$lambda', '$pages', '$duration', '$section', '$merge', '$p', '$title', '$span']);
+  Opal.add_stubs(['$require', '$include', '$[]', '$===', '$map', '$el', '$const_get', '$==', '$times', '$page_count', '$/', '$to_i', '$sub', '$uri', '$location', '$on', '$handle_key_down', '$gh_pages', '$split', '$data', '$new', '$route', '$page_to', '$num', '$set_state', '$assign', '$to_s', '$>', '$-', '$<', '$+', '$code', '$page_back', '$page_forward', '$now', '$!', '$fullscreen', '$puts', '$*', '$height', '$view', '$width', '$to_f', '$div', '$lambda', '$pages', '$duration', '$section', '$merge', '$p', '$title', '$span']);
   self.$require("hyalite");
   self.$require("opal-router");
   self.$require("browser");
@@ -37107,7 +37107,7 @@ Opal.modules["slide"] = function(Opal) {
       function $Slide(){};
       var self = $Slide = $klass($base, $super, 'Slide', $Slide);
 
-      var def = self.$$proto, $scope = self.$$scope, TMP_13, TMP_14, TMP_19, TMP_20, TMP_21, TMP_22, TMP_23, TMP_27;
+      var def = self.$$proto, $scope = self.$$scope, TMP_13, TMP_14, TMP_19, TMP_20, TMP_21, TMP_22, TMP_23, TMP_24, TMP_25, TMP_31;
 
       def.state = def.props = nil;
       self.$include((($scope.get('Hyalite')).$$scope.get('Component')));
@@ -37122,7 +37122,7 @@ Opal.modules["slide"] = function(Opal) {
 if (i == null) i = nil;
         return $scope.get('Object').$const_get("Gibier::Page" + (i)).$el($hash2(["visible", "page_number", "slide_height"], {"visible": self.state['$[]']("page_number")['$=='](i), "page_number": i, "slide_height": height}))}, TMP_11.$$s = self, TMP_11.$$arity = 1, TMP_11), $a).call($b)}else if ("print"['$===']($case)) {return ($a = ($c = $scope.get('Gibier').$page_count().$times()).$map, $a.$$p = (TMP_12 = function(i){var self = TMP_12.$$s || this;
 if (i == null) i = nil;
-        return $scope.get('Object').$const_get("Gibier::Page" + (i)).$el($hash2(["visible", "page_number", "slide_height"], {"visible": true, "page_number": i, "slide_height": $rb_divide(height, $scope.get('SLIDE_HEIGHT'))}))}, TMP_12.$$s = self, TMP_12.$$arity = 1, TMP_12), $a).call($c)}else { return nil }})();
+        return $scope.get('Object').$const_get("Gibier::Page" + (i)).$el($hash2(["visible", "page_number", "slide_height"], {"visible": true, "page_number": i, "slide_height": $rb_divide(height, $scope.get('Gibier').$page_count())}))}, TMP_12.$$s = self, TMP_12.$$arity = 1, TMP_12), $a).call($c)}else { return nil }})();
       }, TMP_13.$$arity = 1);
 
       Opal.defn(self, '$initial_state', TMP_14 = function $$initial_state() {
@@ -37163,19 +37163,31 @@ if (params == null) params = nil;
         return $gvars.window.$location().$assign("" + ($gvars.window.$location().$to_s().$sub(/#\d+$/, "")) + "#" + (num));
       }, TMP_20.$$arity = 1);
 
-      Opal.defn(self, '$handle_key_down', TMP_21 = function $$handle_key_down(event) {
-        var $a, self = this, keycode = nil, $case = nil;
+      Opal.defn(self, '$page_back', TMP_21 = function $$page_back() {
+        var $a, self = this;
 
-        keycode = event.$code();
-        return (function() {$case = keycode;if ((39)['$===']($case) || (34)['$===']($case)) {if ((($a = $rb_lt(self.state['$[]']("page_number"), $scope.get('Gibier').$page_count())) !== nil && $a != null && (!$a.$$is_boolean || $a == true))) {
-          return self.$page_to($rb_plus(self.state['$[]']("page_number"), 1))
-          } else {
-          return nil
-        }}else if ((37)['$===']($case) || (33)['$===']($case)) {if ((($a = $rb_gt(self.state['$[]']("page_number"), 0)) !== nil && $a != null && (!$a.$$is_boolean || $a == true))) {
+        if ((($a = $rb_gt(self.state['$[]']("page_number"), 0)) !== nil && $a != null && (!$a.$$is_boolean || $a == true))) {
           return self.$page_to($rb_minus(self.state['$[]']("page_number"), 1))
           } else {
           return nil
-        }}else if ((83)['$===']($case) || (66)['$===']($case)) {if ((($a = self.state['$[]']("start")) !== nil && $a != null && (!$a.$$is_boolean || $a == true))) {
+        };
+      }, TMP_21.$$arity = 0);
+
+      Opal.defn(self, '$page_forward', TMP_22 = function $$page_forward() {
+        var $a, self = this;
+
+        if ((($a = $rb_lt(self.state['$[]']("page_number"), $scope.get('Gibier').$page_count())) !== nil && $a != null && (!$a.$$is_boolean || $a == true))) {
+          return self.$page_to($rb_plus(self.state['$[]']("page_number"), 1))
+          } else {
+          return nil
+        };
+      }, TMP_22.$$arity = 0);
+
+      Opal.defn(self, '$handle_key_down', TMP_23 = function $$handle_key_down(event) {
+        var $a, self = this, keycode = nil, $case = nil;
+
+        keycode = event.$code();
+        return (function() {$case = keycode;if ((39)['$===']($case) || (34)['$===']($case)) {return self.$page_back()}else if ((37)['$===']($case) || (33)['$===']($case)) {return self.$page_forward()}else if ((83)['$===']($case) || (66)['$===']($case)) {if ((($a = self.state['$[]']("start")) !== nil && $a != null && (!$a.$$is_boolean || $a == true))) {
           return self.$set_state($hash2(["start"], {"start": nil}))
           } else {
           return self.$set_state($hash2(["start"], {"start": $scope.get('Time').$now()}))
@@ -37193,9 +37205,9 @@ if (params == null) params = nil;
           } else {
           return nil
         }}else {return self.$puts("keycode = " + (keycode))}})();
-      }, TMP_21.$$arity = 1);
+      }, TMP_23.$$arity = 1);
 
-      Opal.defn(self, '$fullscreen', TMP_22 = function $$fullscreen() {
+      Opal.defn(self, '$fullscreen', TMP_24 = function $$fullscreen() {
         var self = this;
 
         
@@ -37206,9 +37218,9 @@ if (params == null) params = nil;
             requestMethod.call(element);
         }
       
-      }, TMP_22.$$arity = 0);
+      }, TMP_24.$$arity = 0);
 
-      Opal.defn(self, '$duration', TMP_23 = function $$duration() {
+      Opal.defn(self, '$duration', TMP_25 = function $$duration() {
         var self = this, text = nil;
 
         text = "10";
@@ -37219,10 +37231,10 @@ if (params == null) params = nil;
         }
       
         return $rb_times(text.$to_i(), 60);
-      }, TMP_23.$$arity = 0);
+      }, TMP_25.$$arity = 0);
 
-      return (Opal.defn(self, '$render', TMP_27 = function $$render() {
-        var $a, $b, TMP_24, $c, TMP_25, $d, TMP_26, self = this, follow_height = nil, zoom = nil, top = nil, left = nil, footer_style = nil, $case = nil;
+      return (Opal.defn(self, '$render', TMP_31 = function $$render() {
+        var $a, $b, TMP_26, $c, TMP_27, $d, TMP_28, $e, TMP_29, $f, TMP_30, self = this, follow_height = nil, zoom = nil, top = nil, left = nil, footer_style = nil, $case = nil;
         if ($gvars.window == null) $gvars.window = nil;
 
         follow_height = $rb_lt($rb_divide($gvars.window.$view().$height(), $gvars.window.$view().$width()), $rb_divide($scope.get('SLIDE_HEIGHT'), $scope.get('SLIDE_WIDTH')));
@@ -37238,15 +37250,19 @@ if (params == null) params = nil;
           } else {
           return $hash2([], {})
         }; return nil; })();
-        return (function() {$case = self.state['$[]']("mode");if ("slide"['$===']($case)) {return self.$div($hash2(["className"], {"className": "background"}), self.$div($hash2(["className"], {"className": "background-filter"}), self.$div($hash2(["className", "style", "onKeyDown"], {"className": "slide", "style": $hash2(["zoom", "top", "left"], {"zoom": zoom, "top": "" + (top) + "px", "left": "" + (left) + "px"}), "onKeyDown": ($a = ($b = self).$lambda, $a.$$p = (TMP_24 = function(event){var self = TMP_24.$$s || this;
+        return (function() {$case = self.state['$[]']("mode");if ("slide"['$===']($case)) {return self.$div($hash2(["className"], {"className": "background"}), self.$div($hash2(["className"], {"className": "background-filter"}), self.$div($hash2(["class"], {"class": "slide-controll"}), self.$div($hash2(["class", "onClickCapture"], {"class": "page-back", "onClickCapture": ($a = ($b = self).$lambda, $a.$$p = (TMP_26 = function(){var self = TMP_26.$$s || this;
+
+        return self.$page_back()}, TMP_26.$$s = self, TMP_26.$$arity = 0, TMP_26), $a).call($b)})), self.$div($hash2(["class", "onClick"], {"class": "page-forward", "onClick": ($a = ($c = self).$lambda, $a.$$p = (TMP_27 = function(){var self = TMP_27.$$s || this;
+
+        return self.$page_forward()}, TMP_27.$$s = self, TMP_27.$$arity = 0, TMP_27), $a).call($c)})), self.$div($hash2(["className", "style", "onKeyDown"], {"className": "slide", "style": $hash2(["zoom", "top", "left"], {"zoom": zoom, "top": "" + (top) + "px", "left": "" + (left) + "px"}), "onKeyDown": ($a = ($d = self).$lambda, $a.$$p = (TMP_28 = function(event){var self = TMP_28.$$s || this;
 if (event == null) event = nil;
-        return self.$handle_key_down(event)}, TMP_24.$$s = self, TMP_24.$$arity = 1, TMP_24), $a).call($b)}), self.$pages($rb_times($scope.get('SLIDE_HEIGHT'), zoom))), (($scope.get('Gibier')).$$scope.get('TrackField')).$el($hash2(["total_time", "start", "page_number", "page_count"], {"total_time": self.$duration(), "start": self.state['$[]']("start"), "page_number": self.state['$[]']("page_number"), "page_count": $scope.get('Gibier').$page_count()})), self.$section($hash2(["className"], {"className": "footer"}).$merge(footer_style), self.$p($hash2(["className"], {"className": "title"}), $scope.get('Gibier').$title()), self.$p($hash2(["className"], {"className": "powered-by"}), "Powered by ", self.$span($hash2(["className"], {"className": "hyalite"}), "Hyalite")))))}else if ("print"['$===']($case)) {return self.$div($hash2(["className", "onKeyDown"], {"className": "print", "onKeyDown": ($a = ($c = self).$lambda, $a.$$p = (TMP_25 = function(evt){var self = TMP_25.$$s || this;
+        return self.$handle_key_down(event)}, TMP_28.$$s = self, TMP_28.$$arity = 1, TMP_28), $a).call($d)}), self.$pages($rb_times($scope.get('SLIDE_HEIGHT'), zoom))), (($scope.get('Gibier')).$$scope.get('TrackField')).$el($hash2(["total_time", "start", "page_number", "page_count"], {"total_time": self.$duration(), "start": self.state['$[]']("start"), "page_number": self.state['$[]']("page_number"), "page_count": $scope.get('Gibier').$page_count()})), self.$section($hash2(["className"], {"className": "footer"}).$merge(footer_style), self.$p($hash2(["className"], {"className": "title"}), $scope.get('Gibier').$title()), self.$p($hash2(["className"], {"className": "powered-by"}), "Powered by ", self.$span($hash2(["className"], {"className": "hyalite"}), "Hyalite"))))))}else if ("print"['$===']($case)) {return self.$div($hash2(["className", "onKeyDown"], {"className": "print", "onKeyDown": ($a = ($e = self).$lambda, $a.$$p = (TMP_29 = function(evt){var self = TMP_29.$$s || this;
 if (evt == null) evt = nil;
-        return self.$handle_key_down(evt)}, TMP_25.$$s = self, TMP_25.$$arity = 1, TMP_25), $a).call($c)}), ($a = ($d = self.$pages($rb_times($scope.get('SLIDE_HEIGHT'), zoom))).$map, $a.$$p = (TMP_26 = function(page){var self = TMP_26.$$s || this;
+        return self.$handle_key_down(evt)}, TMP_29.$$s = self, TMP_29.$$arity = 1, TMP_29), $a).call($e)}), ($a = ($f = self.$pages($rb_times($scope.get('SLIDE_HEIGHT'), zoom))).$map, $a.$$p = (TMP_30 = function(page){var self = TMP_30.$$s || this;
 if (page == null) page = nil;
         top = $rb_plus(top, $rb_times($scope.get('SLIDE_HEIGHT'), zoom));
-          return self.$div($hash2(["className", "style"], {"className": "wrap-page", "style": $hash2(["zoom", "top", "left"], {"zoom": zoom, "top": "" + (top) + "px", "left": "" + (left) + "px"})}), page);}, TMP_26.$$s = self, TMP_26.$$arity = 1, TMP_26), $a).call($d))}else { return nil }})();
-      }, TMP_27.$$arity = 0), nil) && 'render';
+          return self.$div($hash2(["className", "style"], {"className": "wrap-page", "style": $hash2(["zoom", "top", "left"], {"zoom": zoom, "top": "" + (top) + "px", "left": "" + (left) + "px"})}), page);}, TMP_30.$$s = self, TMP_30.$$arity = 1, TMP_30), $a).call($f))}else { return nil }})();
+      }, TMP_31.$$arity = 0), nil) && 'render';
     })($scope.base, null);
   })($scope.base);
 };
@@ -37309,7 +37325,7 @@ Opal.modules["page_base"] = function(Opal) {
       return (Opal.defn(self, '$render', TMP_6 = function $$render() {
         var self = this;
 
-        return self.$section($hash2(["className", "style"], {"className": "page " + (self.$page_class_name()), "style": self.$style()}), self.$header(), self.$content());
+        return self.$section($hash2(["class", "style"], {"class": "page " + (self.$page_class_name()), "style": self.$style()}), self.$header(), self.$content());
       }, TMP_6.$$arity = 0), nil) && 'render';
     })($scope.base, null)
   })($scope.base)
