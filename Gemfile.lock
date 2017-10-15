@@ -7,11 +7,18 @@ GIT
 
 GIT
   remote: https://github.com/opal/opal-haml.git
-  revision: 32d7354636a7daa8682ed098ca424fd8e34068bc
+  revision: bf174e036997b2f9bc10402da78e110aba404bed
   specs:
     opal-haml (0.4.4)
       haml
-      opal (~> 0.10.0)
+      opal (~> 0.10, < 0.12)
+      opal-sprockets (~> 0.4.1)
+
+GIT
+  remote: https://github.com/youchan/opal-websocket.git
+  revision: 42ade51be80c9da6558f1337c4457eb41bd6b808
+  specs:
+    opal-websocket (0.1.0)
 
 PATH
   remote: ../gibier
@@ -37,7 +44,7 @@ GEM
   specs:
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    backports (3.8.0)
+    backports (3.10.0)
     concurrent-ruby (1.0.5)
     daemons (1.2.4)
     em-websocket (0.3.8)
@@ -46,11 +53,11 @@ GEM
     eventmachine (1.2.5)
     ffi (1.9.18)
     fssm (0.2.10)
-    haml (5.0.2)
+    haml (5.0.4)
       temple (>= 0.8.0)
       tilt
     hike (1.2.3)
-    hyalite (0.1.0)
+    hyalite (0.2.6)
       opal
     multi_json (1.12.2)
     opal (0.10.5)
@@ -58,10 +65,10 @@ GEM
       sourcemap (~> 0.1.0)
       sprockets (~> 3.1)
       tilt (>= 1.4)
-    opal-browser (0.2.0)
-      opal
-      paggio
-    paggio (0.2.6)
+    opal-sprockets (0.4.1.0.10.4.3.1.0)
+      opal (~> 0.10.4)
+      sprockets (~> 3.1)
+      tilt (>= 1.4)
     public_suffix (3.0.0)
     rack (1.6.8)
     rack-protection (1.5.3)
@@ -73,7 +80,7 @@ GEM
       ffi (>= 0.5.0, < 2)
     redcarpet (3.4.0)
     rouge (1.11.1)
-    sass (3.5.1)
+    sass (3.5.2)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -111,10 +118,10 @@ PLATFORMS
 
 DEPENDENCIES
   gibier!
-  hyalite (= 0.1.0)
-  opal-browser
+  hyalite
   opal-haml!
   opal-router!
+  opal-websocket!
 
 BUNDLED WITH
-   1.15.3
+   1.15.4

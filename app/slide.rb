@@ -1,8 +1,5 @@
 require 'hyalite'
 require 'opal-router'
-require 'browser'
-require 'browser/interval'
-require 'browser/location'
 require 'track_field'
 
 module Gibier
@@ -51,7 +48,6 @@ module Gibier
 
   class Slide
     include Hyalite::Component
-    include Hyalite::Component::ShortHand
 
     def pages(height)
       case @state[:mode]
@@ -67,7 +63,8 @@ module Gibier
     end
 
     def initial_state
-      page_num = $window.location.uri.sub(/.*#([0-9]+)/, '\1').to_i
+      uri = $window.location.toString
+      page_num = uri.sub(/.*#([0-9]+)/, '\1').to_i
 
       {
         page_number: page_num,
@@ -78,14 +75,12 @@ module Gibier
     end
 
     def component_did_mount
-      $window.on(:keydown) do |evt|
-        handle_key_down(evt)
-      end
+      $window.on('keydown') {|evt| handle_key_down(evt) }
 
       unless Gibier.gh_pages
-        @props[:ws].on(:message) do |msg|
-          (event, value) = msg.data.split(':')
-          case event
+        @props[:ws].onmessage do |event|
+          (name, value) = event.data.split(':')
+          case name
           when 'keydown'
             handle_key_down(value.to_i)
           end
@@ -98,7 +93,8 @@ module Gibier
     end
 
     def page_to(num)
-      $window.location.assign("#{$window.location.to_s.sub(/#\d+$/, '')}##{num}")
+      uri = `window.location.toString()`.sub(/#\d+$/, '') + "##{num}"
+      `window.location = #{uri}`
     end
 
     def page_back
@@ -112,29 +108,29 @@ module Gibier
     def handle_key_down(event)
       keycode = event.code
       case keycode
-      when 39,34
-        page_back
-      when 37,33
+      when :Space, :ArrowRight, :ArrowUp
         page_forward
-      when 83,66
+      when :Backspace, :ArrowLeft, :ArrowDown
+        page_back
+      when :KeyS, :KeyB
         unless @state[:start]
           set_state(start: Time.now)
         else
           set_state(start: nil)
         end
-      when 80
+      when :KeyP
         if @state[:mode] == :slide
           set_state(mode: :print)
         else
           set_state(mode: :slide)
         end
-      when 70
+      when :KeyF
         set_state(footer_visible: !@state[:footer_visible])
-        if `event.native.ctrlKey`
+        if event.ctrl_key
           fullscreen
         end
-      when 116
-        if `event.native.shiftKey`
+      when :F5
+        if event.shift_key
           fullscreen
         end
       else
@@ -166,15 +162,17 @@ module Gibier
     end
 
     def render
-      follow_height = $window.view.height / $window.view.width < SLIDE_HEIGHT / SLIDE_WIDTH
+      width = $window.width
+      height = $window.height
+      follow_height = height / width < SLIDE_HEIGHT / SLIDE_WIDTH
       if follow_height
-        zoom = $window.view.height.to_f / SLIDE_HEIGHT * 0.98
+        zoom = height.to_f / SLIDE_HEIGHT * 0.98
       else
-        zoom = $window.view.width.to_f / SLIDE_WIDTH * 0.98
+        zoom = width.to_f / SLIDE_WIDTH * 0.98
       end
 
-      top = ($window.view.height / zoom - SLIDE_HEIGHT) / 2
-      left = ($window.view.width / zoom - SLIDE_WIDTH) / 2
+      top = (height / zoom - SLIDE_HEIGHT) / 2
+      left = (width / zoom - SLIDE_WIDTH) / 2
 
       footer_style = @state[:page_number] == 1 || !@state[:footer_visible] ? {style: {display: 'none'}} : {}
 
@@ -183,8 +181,8 @@ module Gibier
         div({className: 'background'},
           div({className: 'background-filter'},
             div({class: 'slide-controll'},
-              div({class: 'page-back', onClickCapture: -> { page_back }}),
-              div({class: 'page-forward', onClick: -> { page_forward }}),
+              div({class: 'page-back', onClick: -> { page_back }, onTouchStart: -> { page_back }}),
+              div({class: 'page-forward', onClick: -> { page_forward }, onTouchStart: -> { page_forward }}),
               div({
                 className: 'slide',
                 style: {zoom: zoom, top: "#{top}px", left: "#{left}px"},

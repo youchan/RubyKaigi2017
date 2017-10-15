@@ -1,9 +1,6 @@
-require 'browser/interval'
-
 module Gibier
   class TrackField
     include Hyalite::Component
-    include Hyalite::Component::ShortHand
 
     def initialize
       super
@@ -15,15 +12,17 @@ module Gibier
     end
 
     def component_did_mount
-      every(1) do
+      func = Proc.new do
         set_state(tic: !@state[:tic])
-        if el = $document.css(".track-field")[0]
-          @width = el.width.to_i
+        if el = @refs["track-field"]
+          @width = el.width
           spend_time = @props[:start] ? Time.now - @props[:start] : 0
           rabbit_pos = [(spend_time / @props[:total_time]), 1].min * (@width - 40) * 0.96 + @width * 0.02
           set_state(rabbit_pos: rabbit_pos)
         end
       end
+
+      `setInterval(func, 1000)`
     end
 
     def render
@@ -32,7 +31,7 @@ module Gibier
       ystyle = {transform: "rotate(#{@state[:tic]?'':'-'}7deg)"}
       ystyle.merge!(left: "#{turtle_pos}px") if @width > 0
 
-      div({className: 'track-field'},
+      div({class: 'track-field', ref: 'track-field'},
         @props[:start] ? [
           div({className: 'flag', style: {right: "#{@width * 0.02}px"}}),
           div({className: 'rabbit avatar', style: mstyle}),

@@ -21,6 +21,7 @@ class Server < Sinatra::Base
       server.append_path '/Users/youchan/.rbenv/versions/2.4.1/lib/ruby/gems/2.4.0/gems/opal-0.11.0.rc1/stdlib'
 
       Opal.use_gem 'opal-router'
+      Opal.use_gem 'opal-websocket'
       Opal.use_gem 'hyalite'
       Opal.use_gem 'gibier'
 
