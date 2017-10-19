@@ -186,7 +186,7 @@ module Gibier
               div({
                 className: 'slide',
                 style: {zoom: zoom, top: "#{top}px", left: "#{left}px"},
-                onKeyDown: -> (event) { handle_key_down(event) }
+                onKeyDown: -> (event) { handle_key_down(event) },
               },
                 pages(SLIDE_HEIGHT * zoom)
               ),
