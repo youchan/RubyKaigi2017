@@ -97,21 +97,23 @@ module Gibier
       `window.location = #{uri}`
     end
 
-    def page_back
+    def page_back(event)
       page_to(@state[:page_number] - 1) if @state[:page_number] > 0
+      event.prevent_default
     end
 
-    def page_forward
+    def page_forward(event)
       page_to(@state[:page_number] + 1) if @state[:page_number] < Gibier.page_count
+      event.prevent_default
     end
 
     def handle_key_down(event)
       keycode = event.code
       case keycode
       when :Space, :ArrowRight, :ArrowUp
-        page_forward
+        page_forward(event)
       when :Backspace, :ArrowLeft, :ArrowDown
-        page_back
+        page_back(event)
       when :KeyS, :KeyB
         unless @state[:start]
           set_state(start: Time.now)

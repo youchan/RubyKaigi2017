@@ -26404,7 +26404,7 @@ Opal.modules["slide"] = function(Opal) {
   }
   var self = Opal.top, $scope = Opal, nil = Opal.nil, $breaker = Opal.breaker, $slice = Opal.slice, $module = Opal.module, $klass = Opal.klass, $hash2 = Opal.hash2, $gvars = Opal.gvars;
 
-  Opal.add_stubs(['$require', '$include', '$[]', '$===', '$map', '$el', '$const_get', '$==', '$times', '$page_count', '$/', '$toString', '$location', '$to_i', '$sub', '$on', '$handle_key_down', '$gh_pages', '$onmessage', '$split', '$data', '$new', '$route', '$page_to', '$num', '$set_state', '$+', '$>', '$-', '$<', '$code', '$page_forward', '$page_back', '$now', '$!', '$ctrl_key', '$fullscreen', '$shift_key', '$puts', '$*', '$width', '$height', '$to_f', '$div', '$lambda', '$pages', '$duration', '$section', '$merge', '$p', '$title', '$span']);
+  Opal.add_stubs(['$require', '$include', '$[]', '$===', '$map', '$el', '$const_get', '$==', '$times', '$page_count', '$/', '$toString', '$location', '$to_i', '$sub', '$on', '$handle_key_down', '$gh_pages', '$onmessage', '$split', '$data', '$new', '$route', '$page_to', '$num', '$set_state', '$+', '$>', '$-', '$prevent_default', '$<', '$code', '$page_forward', '$page_back', '$now', '$!', '$ctrl_key', '$fullscreen', '$shift_key', '$puts', '$*', '$width', '$height', '$to_f', '$div', '$lambda', '$pages', '$duration', '$section', '$merge', '$p', '$title', '$span']);
   self.$require("hyalite");
   self.$require("opal-router");
   self.$require("track_field");
@@ -26539,31 +26539,27 @@ if (params == null) params = nil;
         return window.location = uri;
       }, TMP_20.$$arity = 1);
 
-      Opal.defn(self, '$page_back', TMP_21 = function $$page_back() {
+      Opal.defn(self, '$page_back', TMP_21 = function $$page_back(event) {
         var $a, self = this;
 
         if ((($a = $rb_gt(self.state['$[]']("page_number"), 0)) !== nil && $a != null && (!$a.$$is_boolean || $a == true))) {
-          return self.$page_to($rb_minus(self.state['$[]']("page_number"), 1))
-          } else {
-          return nil
-        };
-      }, TMP_21.$$arity = 0);
+          self.$page_to($rb_minus(self.state['$[]']("page_number"), 1))};
+        return event.$prevent_default();
+      }, TMP_21.$$arity = 1);
 
-      Opal.defn(self, '$page_forward', TMP_22 = function $$page_forward() {
+      Opal.defn(self, '$page_forward', TMP_22 = function $$page_forward(event) {
         var $a, self = this;
 
         if ((($a = $rb_lt(self.state['$[]']("page_number"), $scope.get('Gibier').$page_count())) !== nil && $a != null && (!$a.$$is_boolean || $a == true))) {
-          return self.$page_to($rb_plus(self.state['$[]']("page_number"), 1))
-          } else {
-          return nil
-        };
-      }, TMP_22.$$arity = 0);
+          self.$page_to($rb_plus(self.state['$[]']("page_number"), 1))};
+        return event.$prevent_default();
+      }, TMP_22.$$arity = 1);
 
       Opal.defn(self, '$handle_key_down', TMP_23 = function $$handle_key_down(event) {
         var $a, self = this, keycode = nil, $case = nil;
 
         keycode = event.$code();
-        return (function() {$case = keycode;if ("Space"['$===']($case) || "ArrowRight"['$===']($case) || "ArrowUp"['$===']($case)) {return self.$page_forward()}else if ("Backspace"['$===']($case) || "ArrowLeft"['$===']($case) || "ArrowDown"['$===']($case)) {return self.$page_back()}else if ("KeyS"['$===']($case) || "KeyB"['$===']($case)) {if ((($a = self.state['$[]']("start")) !== nil && $a != null && (!$a.$$is_boolean || $a == true))) {
+        return (function() {$case = keycode;if ("Space"['$===']($case) || "ArrowRight"['$===']($case) || "ArrowUp"['$===']($case)) {return self.$page_forward(event)}else if ("Backspace"['$===']($case) || "ArrowLeft"['$===']($case) || "ArrowDown"['$===']($case)) {return self.$page_back(event)}else if ("KeyS"['$===']($case) || "KeyB"['$===']($case)) {if ((($a = self.state['$[]']("start")) !== nil && $a != null && (!$a.$$is_boolean || $a == true))) {
           return self.$set_state($hash2(["start"], {"start": nil}))
           } else {
           return self.$set_state($hash2(["start"], {"start": $scope.get('Time').$now()}))
